@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       flash[:success] = "Welcome back #{user.name}"
-      redirect_to user
+      # line added for friendly forwarding
+      redirect_back_or user
     else
       flash.now[:danger] = "Invalid Email/Password"
       render :new
