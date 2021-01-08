@@ -4,7 +4,7 @@ module SessionsHelper
   end
 
   def remember(user)
-    user.remember #set remember_digest to hashed version of remmeber_token
+    user.remember #Create remember_token and set remember_digest to hashed version of remmeber_token
     cookies.permanent.signed[:user_id] = user.id
     cookies.permanent[:remember_token] = user.remember_token 
   end
@@ -21,7 +21,8 @@ module SessionsHelper
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
-      if user && user.authenticated?(cookies[:remember_token])
+      # if user && user.authenticated?(cookies[:remember_token])
+      if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
       end
