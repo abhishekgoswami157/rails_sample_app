@@ -118,11 +118,12 @@ host = 'https://shielded-garden-39806.herokuapp.com'
 config.action_mailer.default_url_options = { host: host }
 ActionMailer::Base.smtp_settings = {
   :address        => 'smtp.sendgrid.net',
-  :port           => '587',
-  :authentication => :plain,
+  :port           => '465',
+  :authentication => :login,
   :user_name      => ENV['SENDGRID_USERNAME'],
   :password       => ENV['SENDGRID_PASSWORD'],
   :domain         => 'heroku.com',
+  :ssl => true,
   :enable_starttls_auto => true
 }
 end
