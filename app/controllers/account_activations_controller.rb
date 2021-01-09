@@ -5,7 +5,7 @@ class AccountActivationsController < ApplicationController
       #THESE LINES GO TO THE USER MODEL WHILE REFACTORING IN ACIVATE METHOD
       # user.update_attribute(:activated, true)
       # user.update_attribute(:activated_at, Time.zone.now)
-      user.activate #see model
+      user.activate #see model, activated: true, activated_at: give the time
       log_in user
       flash[:success] = "Account activated!!"
       redirect_to user
