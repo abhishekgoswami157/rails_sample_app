@@ -126,4 +126,8 @@ ActionMailer::Base.smtp_settings = {
   :enable_starttls_auto => true,
   :openssl_verify_mode => "none"
 }
+
+
+# Store uploaded files on Amazon AWS.
+  config.active_storage.service = :amazon
 end
